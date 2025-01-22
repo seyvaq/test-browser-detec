@@ -74,28 +74,28 @@
         </script> -->
 
         <script>
-            function isEmbeddedBrowser() {
+            function isTouchNGoOrMiBrowser() {
                 const userAgent =
                     navigator.userAgent || navigator.vendor || window.opera;
 
-                // Detect iOS in-app browsers
-                const isiOS = /iPhone|iPad|iPod/i.test(userAgent);
-                const isiOSInAppBrowser = isiOS && !window.webkit;
+                // Detect Touch 'n Go App
+                const isTouchNGoApp = userAgent.includes("TouchNGo");
 
-                // Detect Android in-app browsers
-                const isAndroid = /Android/i.test(userAgent);
-                const isAndroidInAppBrowser =
-                    isAndroid && userAgent.includes("Version/");
+                // Detect Mi Browser
+                const isMiBrowser = userAgent.includes("MiuiBrowser");
 
-                return isiOSInAppBrowser || isAndroidInAppBrowser;
+                return isTouchNGoApp || isMiBrowser;
             }
 
-            if (isEmbeddedBrowser()) {
+            if (isTouchNGoOrMiBrowser()) {
                 alert(
-                    "This page is being viewed in an embedded browser on Android or iOS.",
+                    "This page is opened in the Touch 'n Go App or Mi Browser.",
                 );
+                // Add your custom logic here
             } else {
-                alert("This page is not.");
+                alert(
+                    "This page is not opened in the Touch 'n Go App or Mi Browser.",
+                );
             }
         </script>
     </body>
