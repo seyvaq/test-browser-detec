@@ -26,7 +26,7 @@
             BrowserFunc();
         </script> -->
 
-        <script>
+        <!-- <script>
             function BrowserFunc() {
                 var userAgent = navigator.userAgent;
                 if (
@@ -42,7 +42,7 @@
                 console.log(navigator.userAgent);
             }
             BrowserFunc();
-        </script>
+        </script> -->
         <!--
         <script>
             // Function to detect the browser name
@@ -72,5 +72,31 @@
             var browserName = detectBrowser();
             document.write("Your browser is: " + browserName);
         </script> -->
+
+        <script>
+            function isEmbeddedBrowser() {
+                const userAgent =
+                    navigator.userAgent || navigator.vendor || window.opera;
+
+                // Detect iOS in-app browsers
+                const isiOS = /iPhone|iPad|iPod/i.test(userAgent);
+                const isiOSInAppBrowser = isiOS && !window.webkit;
+
+                // Detect Android in-app browsers
+                const isAndroid = /Android/i.test(userAgent);
+                const isAndroidInAppBrowser =
+                    isAndroid && userAgent.includes("Version/");
+
+                return isiOSInAppBrowser || isAndroidInAppBrowser;
+            }
+
+            if (isEmbeddedBrowser()) {
+                alert(
+                    "This page is being viewed in an embedded browser on Android or iOS.",
+                );
+            } else {
+                alert("This page is not.");
+            }
+        </script>
     </body>
 </html>
